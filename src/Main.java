@@ -1,38 +1,37 @@
-public class Main {
-    public static void main(String[] args) {
-        // Create the ContactsManager object
-        ContactsManager myContactsManager = new ContactsManager();
 
-        // Create a new Contact object for Olivia
-        Contact contact1 = new Contact();
-        contact1.name = "Olivia";
-        contact1.phoneNumber = "888-878-9790";
-        myContactsManager.addContact(contact1);
+import java.util.*;
 
-        // Create a new Contact object for Omid
-        Contact contact2 = new Contact();
-        contact2.name = "Omid";
-        contact2.phoneNumber = "888-777-5589";
-        myContactsManager.addContact(contact2);
+public class Main{
 
-        // Create a new Contact object for Beth
-        Contact contact3 = new Contact();
-        contact3.name = "Beth";
-        contact3.phoneNumber = "444-777-1323";
-        myContactsManager.addContact(contact3);
+    private static Object ContactsManager;
 
-        // Create a new Contact object for Daniel
-        Contact contact4 = new Contact();
-        contact4.name = "Daniel";
-        contact4.phoneNumber = "818-266-5523";
-        myContactsManager.addContact(contact4);
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
 
-        // Search for Omid and print his phone number to screen
-        Contact result = myContactsManager.searchContact("Beth");
-        System.out.println(result.name + ": " + result.phoneNumber);
+        ContactsManager Contact1 = new ContactsManager ("Irvin Buendia");
+        ContactsManager Contact2 = new ContactsManager ("David Culver");
+        ContactsManager Contact3 = new ContactsManager ("David Stephens");
 
 
-        System.out.println(myContactsManager);
+        Contact1.addPhoneNumber(2101231234);
+        Contact2.addPhoneNumber(2103214321);
+        Contact3.addPhoneNumber(2102462468);
+
+
+        System.out.println(Contact1.getName());
+        System.out.println(Contact1.getNumber());
+
+
+        System.out.println("Enter a name");
+        String userName = sc.nextLine();
+        System.out.println("Enter Phone Number");
+        long userNumber = sc.nextLong();
+        ContactsManager userName = new ContactsManager(userName);
+
+        System.out.println(ContactsManager);
+        
+
 
     }
+
 }

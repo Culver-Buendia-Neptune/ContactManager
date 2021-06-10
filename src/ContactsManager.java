@@ -1,28 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactsManager {
-    // Fields:
-    Contact [] myFriends;
-    int friendsCount;
+    private String name;
+    private List<Integer> phoneNumber = new ArrayList<>();
 
-    // Default Constructor:
-    ContactsManager(){
-        myFriends = new Contact[500];
-        friendsCount = 0;
+//constructor
+    public ContactsManager(){};
+
+    //method
+    public ContactsManager(String name){
+        this.name = name;
     }
 
-    // Methods:
-    void addContact(Contact contact){
-        myFriends[friendsCount] = contact;
-        friendsCount++;
+    //setters
+    public String getName(){
+        return this.name;
+    }
+
+    public List<Integer> getNumber() {
+        return phoneNumber;
+    }
+
+    //add the phone number to the phone property
+    public void addPhoneNumber(int num){
+        this.phoneNumber.add(num);
     }
 
 
 
-    Contact searchContact(String searchName){
-        for(int i=0; i<friendsCount; i++){
-            if(myFriends[i].name.equals(searchName)){
-                return myFriends[i];
-            }
-        }
-        return null;
-    }
+
 }

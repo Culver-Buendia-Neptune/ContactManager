@@ -3,31 +3,31 @@ import java.util.List;
 
 public class ContactsManager {
     private String name;
-    private List<Integer> phoneNumber = new ArrayList<>();
+    private int phoneNumber;
 
-//constructor
-    public ContactsManager(){};
 
-    //method
-    public ContactsManager(String name){
+    public ContactsManager(){}
+
+
+    public ContactsManager(String name, int phoneNumber){
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(){
         this.name = name;
     }
 
-    //setters
-    public String getName(){
-        return this.name;
-    }
-
-    public List<Integer> getNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    //add the phone number to the phone property
-    public void addPhoneNumber(int num){
-        this.phoneNumber.add(num);
+    public void setPhoneNumber(int num) {
+        this.phoneNumber = num;
     }
-
-
-
 
 }

@@ -5,95 +5,97 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-
+@SuppressWarnings("all")
 public class Main extends Input {
 
-    public static void viewContacts(){
+//   Method to display contacts in the terminal
+    public static void viewContacts() {
         Path toOurDataPlace = Paths.get("src/data");
         Path toOurDataFile = Paths.get(String.valueOf(toOurDataPlace), "contacts.txt");
         List<String> currentList = new ArrayList<>();
         try {
+//    Reads each line on our contacts.txt file
             currentList = Files.readAllLines(toOurDataFile);
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        for (String line : currentList){
+//    Loop to print out each contact line
+        for (String line : currentList) {
             System.out.println(line);
         }
     }
 
-    public static void addContact(HashMap<String, ArrayList<ContactsManager>> list, Input in) {
+
+//    Method to add contact name and number to contacts list
+    public static void addContact(Input in) {
         Path toOurDataPlace = Paths.get("src/data");
         Path toOurDataFile = Paths.get(String.valueOf(toOurDataPlace), "contacts.txt");
-
         List<String> Contacts = new ArrayList<>();
+//    Accepts user entered name and number
         String name = in.getString("Please enter the name of the Person:");
-//        Contacts.add(name);
         long phoneNumber = in.getInt("Please enter Phone Number:");
         long i = phoneNumber;
-        String s=Long.toString(i).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1)-$2-$3");
-
-
-        String format = "|%1$-15s|%2$-15s|";
+//    Formats the phone number to include dashes
+        String s = Long.toString(i).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1)-$2-$3");
+//    Formats each contact so they all line up
+        String format = "| %1$-17s| %2$-17s|";
         String ex[] = {name, s};
-        String newContact = format(String.format(format, (Object[])ex));
-
-
-//        String newContact = name + " | " + s;
+        String newContact = format(String.format(format, (Object[]) ex));
+//    Adds new contact to Contacts ArrayList
         Contacts.add(newContact);
         try {
+//    Adds our newly created contact to our contacts.txt file
             Files.write(toOurDataFile, Contacts, StandardOpenOption.APPEND);
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }
 
+//    Creates format method to enable formatting newContact
     private static String format(String format) {
         return format;
     }
 
-    public static void deleteContact(HashMap<String, ArrayList<ContactsManager>> list, Input in) {
-
+//    Method to delete selected contact
+    public static void deleteContact(Input in) {
         Path toOurDataPlace = Paths.get("src/data");
         Path toOurDataFile = Paths.get(String.valueOf(toOurDataPlace), "contacts.txt");
-
-        String name = in.getString("What Contact would you like to delete? (Enter First and Last name)");
-
-        List<String> currentList = new ArrayList<>();
-        try {
-            currentList = Files.readAllLines(toOurDataFile);
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-
-        Iterator<String> listIterator = currentList.iterator();
-        while(listIterator.hasNext()){
-            String contact = listIterator.next();
-            if (contact.contains(name)){
-                listIterator.remove();
-            }
-        }
-        try {
-            Files.write(toOurDataFile, currentList);
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-    }
-
-    public static void searchByName(HashMap<String, ArrayList<ContactsManager>> list, Input in) {
-
-        Path toOurDataPlace = Paths.get("src/data");
-        Path toOurDataFile = Paths.get(String.valueOf(toOurDataPlace), "contacts.txt");
-
-        String name = in.getString("What Contact would you like view?");
-
+//    Accepts user input to select which contact to delete. Works by entering either first, or first and last name
+        String name = in.getString("What Contact would you like to delete?");
         List<String> currentList = new ArrayList<>();
         try {
             currentList = Files.readAllLines(toOurDataFile);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+//    Iterates through each list in file and compares user input to contents. Deletes item if it matches
+        Iterator<String> listIterator = currentList.iterator();
+        while (listIterator.hasNext()) {
+            String contact = listIterator.next();
+            if (contact.contains(name)) {
+                listIterator.remove();
+            }
+        }
+        try {
+            Files.write(toOurDataFile, currentList);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 
+
+//   Method that allows user to search by name and displays name and number to terminal.
+    public static void searchByName(Input in) {
+        Path toOurDataPlace = Paths.get("src/data");
+        Path toOurDataFile = Paths.get(String.valueOf(toOurDataPlace), "contacts.txt");
+        String name = in.getString("What Contact would you like view?");
+        List<String> currentList = new ArrayList<>();
+        try {
+            currentList = Files.readAllLines(toOurDataFile);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+//    Iterates through each list in file and compares user input to contents. Displays item if it matches
         Iterator<String> listIterator = currentList.iterator();
         while (listIterator.hasNext()) {
             String empress = listIterator.next();
@@ -104,7 +106,8 @@ public class Main extends Input {
     }
 
 
-    public static void runApp(HashMap<String, ArrayList<ContactsManager>> list, Input in){
+//    Main method that displays menu and calls methods depending on user input
+    public static void runApp(Input in) {
         System.out.println("Main Menu");
         boolean run = true;
         while (run) {
@@ -122,15 +125,15 @@ public class Main extends Input {
                     System.out.println("Returning to menu...\n");
                     break;
                 case 2:
-                    addContact(list, in);
+                    addContact(in);
                     System.out.println("Returning to menu...\n");
                     break;
                 case 3:
-                    searchByName(list, in);
+                    searchByName(in);
                     System.out.println("Returning to menu...\n");
                     break;
                 case 4:
-                    deleteContact(list, in);
+                    deleteContact(in);
                     System.out.println("Returning to menu...\n");
                     break;
                 default:
@@ -147,7 +150,6 @@ public class Main extends Input {
     }
 
     public static void main(String[] args) {
-        HashMap<String, ArrayList<ContactsManager>> list = new HashMap<>();
-        runApp(list, new Input());
+        runApp(new Input());
     }
 }

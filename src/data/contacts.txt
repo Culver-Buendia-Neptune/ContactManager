@@ -1,9 +1,11 @@
-            Main Menu
-|Name           |Number         |
----------------------------------
-|Irvin Buendia  |(111)-222-3333 |
-|David Culver   |(222)-333-4444 |
-|Jay Arredondo  |(333)-444-5555 |
-|Javier Ruedas  |(444)-555-6666 |
-|David Stephens |(555)-666-7777 |
-|Benny Alvarez  |(210)-222-333455|
+               Main Menu
+| Name             | Phone Number     |
+--------------------------------------
+| Irvin Buendia    | (111)-222-3333   |
+| David Culver     | (222)-333-4444   |
+| Jay Arredondo    | (333)-444-5555   |
+| Javier Ruedas    | (444)-555-6666   |
+| David Stephens   | (555)-666-7777   |
+| Alex Hernandez   | (555)-333-1158   |
+| Rose Barcus      | (123)-456-7894   |
+| Peter Griffin    | (999)-999-9999   |

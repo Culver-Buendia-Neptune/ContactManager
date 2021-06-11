@@ -33,13 +33,23 @@ public class Main extends Input {
         long i = phoneNumber;
         String s=Long.toString(i).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1)-$2-$3");
 
-        String newContact = name + " | " + s;
+
+        String format = "|%1$-15s|%2$-15s|";
+        String ex[] = {name, s};
+        String newContact = format(String.format(format, (Object[])ex));
+
+
+//        String newContact = name + " | " + s;
         Contacts.add(newContact);
         try {
             Files.write(toOurDataFile, Contacts, StandardOpenOption.APPEND);
         } catch (IOException ioe){
             ioe.printStackTrace();
         }
+    }
+
+    private static String format(String format) {
+        return format;
     }
 
     public static void deleteContact(HashMap<String, ArrayList<ContactsManager>> list, Input in) {

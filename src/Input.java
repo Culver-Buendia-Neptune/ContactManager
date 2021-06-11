@@ -41,10 +41,10 @@ public class Input {
 //    }
 
     // refactor getInt method to use try-catch
-    public int getInt(String prompt){
-        int number;
+    public long getInt(String prompt){
+        long number;
         try {
-            number = Integer.valueOf(getString(prompt));
+            number = Long.valueOf(getString(prompt));
             return number;
         } catch (NumberFormatException nfe){
             System.out.println("Wrong input, try again: ");
